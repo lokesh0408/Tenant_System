@@ -2,7 +2,7 @@
 
 This is a multi-tenant event booking backend built with Payload CMS and a Neon Postgres database, as part of the WeframeTech recruitment process.
 
-## 🚀 Architecture Overview
+## Architecture Overview
 
 - **Core Framework**: Payload CMS (vX.X)
 - **Database**: Neon Serverless Postgres
@@ -47,16 +47,3 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
     npm run dev
     ```
     The admin panel will be available at `http://localhost:3000/admin`.
-
-## डेमो Credentials
-
-- **Tenant 1 (TechCon Global):**
-  - **Organizer:** `alice@techcon.com` / `password`
-  - **Attendee:** `bob@techcon.com` / `password`
-- **Tenant 2 (Creative Minds Summit):**
-  - **Organizer:** `charlie@creativeminds.com` / `password`
-  - **Attendee:** `diana@creativeminds.com` / `password`
-
-## 🎬 Live Demo
-
-[Link to your Loom Video Here]
