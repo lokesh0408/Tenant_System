@@ -8,7 +8,6 @@ import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
 import { Users } from './collections/Users'
-import { Media } from './collections/Media'
 import { Tenants } from './collections/Tenants'
 import { Events } from './collections/Events'
 import { Bookings } from './collections/Bookings'
@@ -26,7 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Tenants, Events, Bookings, Notifications, BookingLogs],
+  collections: [Users, Tenants, Events, Bookings, Notifications, BookingLogs],
   endpoints: customEndpoints as any,
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
