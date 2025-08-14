@@ -19,7 +19,13 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
 - `src/access/`: Contains reusable access control functions for RBAC and tenant isolation.
 - `src/seed.mts`: The script to populate the database with initial test data.
 
-## ⚙️ Setup and Installation
+## Tech Stack
+- **Backend Framework**: [Payload CMS](https://payloadcms.com/)
+- **Database**: [Neon Serverless Postgres](https://neon.tech/)
+- **Language**: TypeScript
+- **Authentication**: Payload local auth
+
+## Setup and Installation
 
 1.  **Clone the repository:**
     ```bash
@@ -47,3 +53,19 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
     npm run dev
     ```
     The admin panel will be available at `http://localhost:3000/admin`.
+
+## Testing
+1. **Login as Admin**:  
+   - Email: `admin@example.com`  
+   - Password: `password`
+2. **Create an Event** from the Payload admin panel (`/admin`).
+3. **Book Seats** using `/api/bookings/create` until the event reaches capacity.
+4. **Check Waitlist Behavior**:
+   - Continue booking beyond capacity to test waitlist logic.
+5. **Cancel a Booking** and verify that the first waitlisted booking is promoted automatically.
+
+## Notes
+- Booking capacity is enforced automatically; bookings beyond capacity go to waitlist.
+- If a confirmed booking is cancelled, the earliest waitlisted booking is promoted.
+- All data is scoped to the authenticated user's tenant.
+
