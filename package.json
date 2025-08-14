@@ -16,7 +16,7 @@
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --no-experimental-strip-types\" pnpm exec playwright test",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
-    "seed": "cross-env NODE_OPTIONS=--no-deprecation ts-node --esm src/seed.ts"
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation node --loader ts-node/esm src/seed.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.51.0",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@playwright/test": "1.54.1",
     "@testing-library/react": "16.3.0",
-    "@types/node": "^22.5.4",
+    "@types/node": "^22.17.1",
     "@types/react": "19.1.8",
     "@types/react-dom": "19.1.6",
     "@vitejs/plugin-react": "4.5.2",

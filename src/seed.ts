@@ -1,26 +1,31 @@
-import payload from 'payload'
-import type { InitOptions } from 'payload'
-import path from 'path'
 import dotenv from 'dotenv'
-import config from './payload.config.js'
+import type { InitOptions } from 'payload'
+import path, { dirname, resolve } from 'path'
+
+import { fileURLToPath } from 'url'
+
+// Get __dirname equivalent in ESM
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 dotenv.config({
-  path: path.resolve(__dirname, '../.env'),
+  path: resolve(__dirname, '../.env'),
 })
+
+import payload from 'payload'
+import config from './payload.config.js'
 
 const seed = async (): Promise<void> => {
   const initOptions: InitOptions = {
     config, // Required in InitOptions
   }
-  console.log('Connecting to database with config:', (await config).db)
+
   try {
     await payload.init(initOptions)
   } catch (err) {
     console.error('Payload init error:', err)
     process.exit(1)
   }
-
-  console.log('Seeding database...')
 
   const [tenant1, tenant2] = await Promise.all([
     payload.create({ collection: 'tenants', data: { name: 'Tenant 3' } }),
@@ -89,7 +94,6 @@ const seed = async (): Promise<void> => {
     },
   })
 
-  console.log('Database seeded successfully!')
   process.exit(0)
 }
 

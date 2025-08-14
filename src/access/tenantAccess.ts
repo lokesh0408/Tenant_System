@@ -1,5 +1,5 @@
 import { Access, AccessArgs, Where } from 'payload'
-import { User } from '../payload-types'
+import { User } from '../payload-types.js'
 
 // Helpers
 const isAdmin = (user: User | null) => user?.role === 'admin'

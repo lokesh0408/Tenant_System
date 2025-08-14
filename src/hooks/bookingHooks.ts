@@ -1,5 +1,5 @@
 import { CollectionBeforeChangeHook, CollectionAfterChangeHook, Payload } from 'payload'
-import { Booking, Event, User, Tenant } from '../payload-types'
+import { Booking, Event, User, Tenant } from '../payload-types.js'
 
 type NotificationType =
   | 'waitlisted'

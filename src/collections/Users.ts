@@ -1,5 +1,5 @@
 import { CollectionConfig } from 'payload'
-import { tenantAccess, canUpdateOwn } from '../access/tenantAccess'
+import { tenantAccess, canUpdateOwn } from '../access/tenantAccess.js'
 
 export const Users: CollectionConfig = {
   slug: 'users',

@@ -1,6 +1,4 @@
 import { CollectionConfig } from 'payload'
-import { readOnly, canReadOwn, canUpdateOwn } from '../access/tenantAccess'
-import { tr } from 'payload/i18n/tr'
 
 export const Notifications: CollectionConfig = {
   slug: 'notifications',

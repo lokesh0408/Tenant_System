@@ -1,6 +1,6 @@
 import { CollectionConfig } from 'payload'
-import { bookingStatusHook, bookingStatusBeforeHook } from '../hooks/bookingHooks'
-import { canReadOwn, canUpdateOwn } from '../access/tenantAccess'
+import { bookingStatusHook, bookingStatusBeforeHook } from '../hooks/bookingHooks.js'
+import { canReadOwn, canUpdateOwn } from '../access/tenantAccess.js'
 
 export const Bookings: CollectionConfig = {
   slug: 'bookings',

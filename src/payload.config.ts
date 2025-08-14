@@ -1,3 +1,4 @@
+import 'dotenv/config'
 // storage-adapter-import-placeholder
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { payloadCloudPlugin } from '@payloadcms/payload-cloud'
@@ -7,13 +8,13 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 
-import { Users } from './collections/Users'
-import { Tenants } from './collections/Tenants'
-import { Events } from './collections/Events'
-import { Bookings } from './collections/Bookings'
-import { Notifications } from './collections/Notifications'
-import { BookingLogs } from './collections/BookingLogs'
-import { customEndpoints } from './endpoints'
+import { Users } from './collections/Users.js'
+import { Tenants } from './collections/Tenants.js'
+import { Events } from './collections/Events.js'
+import { Bookings } from './collections/Bookings.js'
+import { Notifications } from './collections/Notifications.js'
+import { BookingLogs } from './collections/BookingLogs.js'
+import { customEndpoints } from './endpoints/index.js'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
