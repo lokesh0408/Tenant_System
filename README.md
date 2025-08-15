@@ -4,7 +4,7 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
 
 ## Architecture Overview
 
-- **Core Framework**: Payload CMS (vX.X)
+- **Core Framework**: Payload CMS
 - **Database**: Neon Serverless Postgres
 - **Key Features**:
   - **Multi-Tenancy**: Data is strictly isolated between tenants using a `tenant` relationship on every collection.
@@ -17,7 +17,7 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
 - `src/hooks/`: Holds the core business logic for booking status changes.
 - `src/endpoints/`: Defines the 6 custom REST API endpoints.
 - `src/access/`: Contains reusable access control functions for RBAC and tenant isolation.
-- `src/seed.mts`: The script to populate the database with initial test data.
+- `src/seed.ts`: The script to populate the database with initial test data.
 
 ## Tech Stack
 
@@ -30,11 +30,11 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
 
 1.  **Clone the repository:**
     ```bash
-    git clone <your-repo-url>
+    git clone <repo-url>
     ```
 2.  **Install dependencies:**
     ```bash
-    npm install
+    npm install or pnpm install
     # or
     yarn install
     ```
@@ -47,7 +47,7 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
     ```
 4.  **Run the database seed script:**
     ```bash
-    npm run seed
+    npm run seed or pnpm run seed
     ```
 5.  **Start the development server:**
     ```bash
@@ -68,6 +68,28 @@ This is a multi-tenant event booking backend built with Payload CMS and a Neon P
 
 ## Notes
 
+1. **Authentication & Authorization**:
+
+- All endpoints require the user to be authenticated via ensureAuthenticated(req).
+- Data access is tenant-scoped — users can only interact with events, bookings, and waitlists within their tenant.
+
+2. **Booking Rules**:
+
 - Booking capacity is enforced automatically; bookings beyond capacity go to waitlist.
 - If a confirmed booking is cancelled, the earliest waitlisted booking is promoted.
 - All data is scoped to the authenticated user's tenant.
+
+3. **Event Management**:
+
+- Event creation and editing are restricted to authorized users only.
+- Capacity updates are reflected in real-time, and booking promotions are triggered automatically if capacity increases.
+
+4. **Error Handling**:
+
+- All API responses follow a consistent JSON structure with error and message fields in case of failures.
+- Meaningful HTTP status codes are returned (200, 400, 401, 403, 404, 409, 500).
+
+5. **Testing & Deployment**:
+
+- API tested via Postman with authenticated requests.
+- Deployed on Vercel, ensuring public accessibility for review.
