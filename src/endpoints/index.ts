@@ -172,10 +172,14 @@ export const customEndpoints: Endpoint[] = [
             .json({ error: 'Only organizers and admins can access the dashboard.' })
         }
 
-        const tenantId = typeof req.user.tenant === 'object' ? req.user.tenant.id : req.user.tenant
+        const tenantId = typeof req.user.tenant === 'object' ? req.user.tenant.id : req.user.tenant // tenant is extracted
         const payload = req.payload
 
-        // 1. Upcoming Events with counts
+        // 1. Upcoming Events with counts -> shows detailed info per event, including % filled so organizers know which events need attention.
+
+        // Finds all events for tenant where date >= today.
+        // For each event → calls getBookingCounts.
+        // Adds percentageFilled = confirmed / capacity * 100.
         const { docs: events } = await payload.find({
           collection: 'events',
           where: {
@@ -191,13 +195,15 @@ export const customEndpoints: Endpoint[] = [
             return {
               ...event,
               ...counts,
+              // This helps the organizer/admin quickly see how “full” each event is.
+              // eg: event 1 is 80% full and event 2 is 25% full
               percentageFilled:
                 event.capacity > 0 ? (counts.confirmedCount / event.capacity) * 100 : 0,
             }
           }),
         )
 
-        // 2. Summary Analytics
+        // 2. Summary Analytics -> Looks at all bookings for the tenant (across all events) i.e. overall.
         const allBookings = await payload.find({
           collection: 'bookings',
           where: { tenant: { equals: tenantId } },
@@ -212,6 +218,8 @@ export const customEndpoints: Endpoint[] = [
         }
 
         // 3. Recent Activity
+        // Fetch recent booking-logs for tenant.
+        // Limit 5, sorted by newest.
         const { docs: recentActivity } = await payload.find({
           collection: 'booking-logs',
           where: { tenant: { equals: tenantId } },
