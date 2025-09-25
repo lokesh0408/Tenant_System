@@ -1,6 +1,6 @@
-# WeframeTech Backend Hiring Task - Event Booking System
+# Event Booking System
 
-This is a multi-tenant event booking backend built with Payload CMS and a Neon Postgres database, as part of the WeframeTech recruitment process.
+This is a multi-tenant event booking backend built with Payload CMS and a Neon Postgres database.
 
 ## Architecture Overview
 
